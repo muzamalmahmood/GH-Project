@@ -9,7 +9,7 @@ on:
     branches:
       - main
       - 'dev-*'      # dev-ney, dev-this-new
-      - 'feat/**'    # feat/new, feat/new/button
+      - 'feat/**'    # feat/new, feat/new/button #heelo kuu=tee
     paths-ignore:
       - '.github/workflows/*'
 
