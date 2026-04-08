@@ -1,14 +1,22 @@
 name: Events Demo 1
 
-on: 
+on:
   pull_request:
     types:
       - opened
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*'      # dev-ney, dev-this-new
+      - 'feat/**'    # feat/new, feat/new/button
+    paths-ignore:
+      - '.github/workflows/*'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Output event data
         run: echo "${{ toJson(github.event) }}"
