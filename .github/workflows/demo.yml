@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-
+      - name: cache dependendencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: deps-bode-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
 
@@ -25,10 +29,15 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.publish.outputs.script-file}}
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: cache dependendencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         run: npm ci
